@@ -33,7 +33,8 @@
 set.seed(2040)
 y <- rgsm(500,c(.1,.3,.4,.2),1)
 burnin <- 100
-gsm.out <- gsm(y,250,300,burnin+500,6500,340,.25)
+J <- 250
+gsm.out <- gsm(y,J,300,burnin+500,6500,340,1/J)
 thresh <- c(0.1,0.5,0.75,1,2)
 tail.prob.est <- rep(NA,length(thresh))
 tail.prob.true <- rep(NA,length(thresh))

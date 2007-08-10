@@ -46,6 +46,7 @@
 set.seed(2040)
 y <- rgsm(500,c(.1,.3,.4,.2),1)
 burnin <- 100
-gsm.out <- gsm.theta(y,250,300,burnin+500,6500,340,.25)
+J <- 250
+gsm.out <- gsm.theta(y,J,300,burnin+500,6500,340,1/J)
 gsm.plot(gsm.out,y,ndens=0,nbin=20,histogram=TRUE)
 }
