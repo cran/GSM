@@ -3,11 +3,11 @@
 \alias{dgsm}
 \alias{pgsm}
 \alias{rgsm}
-\title{Utility function}
+\title{Utility Function}
 \usage{
-   dgsm(x,weight,rateparam)
-   pgsm(q,weight,rateparam)
-   rgsm(n,weight,rateparam)
+   dgsm(x, weight, rateparam)
+   pgsm(q, weight, rateparam)
+   rgsm(n, weight, rateparam)
 }
 \description{
    Density function evaluation for a Gamma Shape Mixture Model.
@@ -25,8 +25,8 @@
    \code{\link{dgsm}} gives the density, \code{\link{pgsm}} gives the distribution function, and \code{\link{rgsm}} generates random deviates.
 }
 \references{
-   Venturini, S., Dominici, F., and Parmigiani, G., "Gamma Shape Mixtures for Heavy-Tailed Distributions" (December 2006). Johns Hopkins University, Dept. of Biostatistics Working Papers. Working Paper 124. 
-   \url{http://www.bepress.com/jhubiostat/paper124}
+   Venturini, S., Dominici, F. and Parmigiani, G. (2008), "Gamma shape mixtures for heavy-tailed distributions". Annals of Applied Statistics, \bold{Volume 2}, Number 2, 756--776.
+   \url{http://projecteuclid.org/euclid.aoas/1215118537}
 }
 \seealso{
    \code{\link{dgamma}},
