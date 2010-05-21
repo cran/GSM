@@ -15,4 +15,4 @@
    \code{\link{estim.gsm_theta}}.
 }
 \keyword{distribution}
-\keyword{models}
+\keyword{mixture}

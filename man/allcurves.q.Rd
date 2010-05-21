@@ -11,9 +11,9 @@
    \item{post}{matrix containing of a mixture's density posterior draws.}
    \item{perc}{percentile, a value that satisfies 0 < perc < 1.}
 }
-\details{This is a utility function used to generate the credibility bands for a Gamma Shape Mixture density within \code{\link{plot.gsm}}.}
+\details{This is a utility function used to generate the credibility bands for a Gamma Shape Mixture density within \code{\link{plot}}.}
 \seealso{
-   \code{\link{plot.gsm}}.
+   \code{\link{plot-methods}}.
 }
 \author{Sergio Venturini \email{sergio.venturini@unibocconi.it} }
-\keyword{distribution}
+%\keyword{distribution}

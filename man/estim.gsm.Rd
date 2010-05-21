@@ -33,11 +33,11 @@
 \author{Sergio Venturini \email{sergio.venturini@unibocconi.it} }
 \seealso{
    \code{\link{estim.gsm_theta}}, 
-   \code{\link{summary.gsm}},
-   \code{\link{plot.gsm}}.
+   \code{\link{summary-methods}},
+   \code{\link{plot-methods}}.
 }
 \keyword{distribution}
-\keyword{models}
+\keyword{mixture}
 \examples{
 set.seed(2040)
 y <- rgsm(500,c(.1,.3,.4,.2),1)

@@ -1,11 +1,14 @@
-\name{predict.gsm}
-\alias{predict.gsm}
+\name{predict-methods}
+\docType{methods}
+\alias{predict-methods}
+\alias{predict,ANY-method}
+\alias{predict,gsm-method}
 \title{Tail Probability Estimation for a Gamma Shape Mixture Model}
 \usage{
-      \method{predict}{gsm}(object, thresh, start = 1, \dots)
+      \S4method{predict}{gsm}(object, thresh, start = 1, \dots)
 }
 \description{
-   This function allows to estimate the tail probability of a Gamma Shape Mixture Model using the output of the \code{\link{estim.gsm}} or \code{\link{estim.gsm_theta}} procedures.
+   \code{predict} method for class "gsm". This function allows to estimate the tail probability of a Gamma Shape Mixture Model using the output of the \code{\link{estim.gsm}} or \code{\link{estim.gsm_theta}} procedures.
 }
 \arguments{
    \item{object}{object of class "gsm"; a list returned by the \code{\link{estim.gsm}} or \code{\link{estim.gsm_theta}} functions.}
@@ -27,11 +30,10 @@
 \seealso{
    \code{\link{estim.gsm}},
    \code{\link{estim.gsm_theta}},
-   \code{\link{summary.gsm}}.
-   \code{\link{plot.gsm}}.
+   \code{\link{predict-methods}},
+   \code{\link{plot-methods}}.
 }
-\keyword{distribution}
-\keyword{models}
+\keyword{methods}
 \examples{
 set.seed(2040)
 y <- rgsm(500,c(.1,.3,.4,.2),1)

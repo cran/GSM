@@ -1,17 +1,18 @@
-\name{plot.gsm}
-\alias{plot.gsm}
+\name{plot-methods}
+\docType{methods}
+\alias{plot-methods}
+\alias{plot,ANY,ANY-method}
+\alias{plot,gsm,missing-method}
 \title{Plot of a Gamma Shape Mixture Model}
-\description{
-   This function plots the output of a Gamma Shape Mixture estimation procedure.
-}
 \usage{
-   \method{plot}{gsm}(x, ndens = 5, xlim = c(min(y), max(y)), ylim = c(0, max(x$fdens)), xlab = "x", ylab = "density", nbin = 10, histogram = FALSE, bands = FALSE, confid = .95, start = 1, \dots)
+   \S4method{plot}{gsm,missing}(x, ndens = 5, xlab = "x", ylab = "density", nbin = 10, histogram = FALSE, bands = FALSE, confid = .95, start = 1, \dots)
+}
+\description{
+   \code{plot} method for class "gsm". This function plots the output of a Gamma Shape Mixture estimation procedure.
 }
 \arguments{
    \item{x}{object of class "gsm"; a list returned by the \code{\link{estim.gsm}} or \code{\link{estim.gsm_theta}} functions.}
    \item{ndens}{number of simulated density curves to plot.}
-   \item{xlim}{the x limits (x1, x2) of the plot.}
-   \item{ylim}{the y limits of the plot.}
    \item{xlab}{a title for the x axis.}
    \item{ylab}{a title for the y axis.}
    \item{nbin}{number of bins for the histogram.}
@@ -33,11 +34,10 @@
 \seealso{
    \code{\link{estim.gsm}},
    \code{\link{estim.gsm_theta}},
-   \code{\link{summary.gsm}},
-   \code{\link{rgsm}}.
+   \code{\link{summary-methods}},
+   \code{\link{predict-methods}}.
 }
-\keyword{distribution}
-\keyword{models}
+\keyword{methods}
 \examples{
 set.seed(2040)
 y <- rgsm(500,c(.1,.3,.4,.2),1)
