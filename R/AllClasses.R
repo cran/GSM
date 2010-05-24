@@ -7,14 +7,14 @@
 	   To cite, see citation(\"%s\")\n", pkg, packageDescription(pkg)$Version, pkg))
 }
 
-setClass(Class = "gsm", representation(fdens = "matrix", theta = "numeric", weight = "matrix", data = "numeric"))
+setClass(Class = "gsm", representation(fdens = "matrix", theta = "numeric", weight = "matrix", label = "matrix", data = "numeric"))
 
 setMethod("initialize", "gsm",
-	function(.Object, fdens = matrix(NA), theta = numeric(0), weight = matrix(NA), data = numeric(0)) {
-		# write here requirements that the slots have to satisfy
+	function(.Object, fdens = matrix(NA), theta = numeric(0), weight = matrix(NA), label = matrix(NA), data = numeric(0)) {
 		.Object@fdens <- fdens
 		.Object@theta <- theta
 		.Object@weight <- weight
+		.Object@label <- label
 		.Object@data <- data
 		.Object
 	}
@@ -76,21 +76,24 @@ setMethod("plot",
 		y.grid <- seq(min(data)*.66, max(data)*1.5, length = G)
 		xlim <- range(data)
 		ylim <- c(0, max(fdens))
+		yval <- apply(fdens, 2, mean)
 		if (histogram) {
 			hist(data, freq = FALSE, breaks = nbin, col = gray(.5), border = gray(.25), xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab, main = "")
 		}
 		else {
-			plot(c(0, y.grid), c(0, apply(fdens, 2, mean)), type = "n", xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab)
-			}
-			if (bands) {
-				color <- rgb(190, 190, 190, alpha=180, maxColorValue=255)
-				grid <- c(y.grid, rev(y.grid))
-				perc <- (1 - confid) / 2
-				curves <- c(allcurves.q(fdens, perc), rev(allcurves.q(fdens, (1 - perc))))
-				polygon(grid, curves, col = color, lty = 1, lwd = 2, border = NA)
-			}
-			for (i in sample(1:dim(fdens)[1], ndens, replace = rpl)) lines(y.grid, fdens[i, ], col = "red")
-			lines(y.grid, apply(fdens, 2, mean), lwd = 2)
-			rug(data)
+			plot(c(0, y.grid), c(0, yval), type = "n", xlim = xlim, ylim = ylim, xlab = xlab, ylab = ylab)
 		}
+		if (bands) {
+			color <- rgb(190, 190, 190, alpha=180, maxColorValue=255)
+			grid <- c(y.grid, rev(y.grid))
+			perc <- (1 - confid) / 2
+			curves <- c(allcurves.q(fdens, perc), rev(allcurves.q(fdens, (1 - perc))))
+			polygon(grid, curves, col = color, lty = 1, lwd = 2, border = NA)
+		}
+		for (i in sample(1:dim(fdens)[1], ndens, replace = rpl)) lines(y.grid, fdens[i, ], col = "red")
+		lines(y.grid, yval, lwd = 2)
+		rug(data)
+		out <- list(xval = y.grid, yval = yval)
+		invisible(out)
+	}
 )

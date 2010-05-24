@@ -5,7 +5,7 @@
    This function provides the inferential algorithm to estimate a mixture of gamma distributions in which the mixing occurs over the shape parameter. It implements the collapsing approach for the GSM model, as discussed in Venturini et al. (2008).
 }
 \usage{
-   estim.gsm(y, J, G = 100, M = 600, a, b, alpha)
+   estim.gsm(y, J, G = 100, M = 600, a, b, alpha, init = list(rep(1 / J, J), NA, rep(1, N)))
 }
 \arguments{
    \item{y}{vector of data.}
@@ -15,6 +15,7 @@
    \item{a}{hyperparameter of the rate parameter prior distribution.}
    \item{b}{hyperparameter of the rate parameter prior distribution.}
    \item{alpha}{hyperparameter of the mixture's weights prior distribution.}
+   \item{init}{initialization values.}
 }
 \details{
    Suggestions on how to choose \code{J}, \code{a} and \code{b} are provided in Venturini et al. (2008). In that work the \code{alpha} vector is always set at (1/\code{J},...,1/\code{J}), but here one is free to choose the value of the generic element of \code{alpha}.
@@ -24,6 +25,7 @@
    \item{fdens}{matrix containing the posterior draws for the mixture's density.}
    \item{theta}{vector containing the posterior draws for the mixture's rate parameter.}
    \item{weight}{matrix containing the posterior draws for the mixture's weights.}
+   \item{label}{matrix containing the posterior draws for the mixture's labels.}
    \item{data}{vector of data.}
 }
 \references{

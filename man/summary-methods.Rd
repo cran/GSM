@@ -8,7 +8,7 @@
 	\code{summary} method for class "gsm". This function allows to summarize the output of a Gamma Shape Mixture estimate procedure like \code{\link{estim.gsm}} or \code{\link{estim.gsm_theta}}.
 }
 \usage{
-   \S4method{summary}{gsm}(object, plot = FALSE, start = 1, \dots)
+\S4method{summary}{gsm}(object, plot = FALSE, start = 1, \dots)
 }
 \arguments{
    \item{object}{object of class "gsm"; a list returned by the \code{\link{estim.gsm}} or \code{\link{estim.gsm_theta}} functions.}

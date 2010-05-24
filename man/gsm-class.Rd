@@ -19,6 +19,7 @@ Objects can be created by calls of the form \code{new("gsm", fdens, theta, weigh
     \item{\code{fdens}:}{Object of class \code{"matrix"}; posterior draws from the MCMC simulation algorithm of the Gamma Shape Mixture density.}
     \item{\code{theta}:}{Object of class \code{"numeric"}; posterior draws from the MCMC simulation algorithm of the Gamma Shape Mixture scale parameter.}
     \item{\code{weight}:}{Object of class \code{"matrix"}; posterior draws from the MCMC simulation algorithm of the Gamma Shape Mixture weights.}
+    \item{\code{label}:}{Object of class \code{"matrix"}; posterior draws from the MCMC simulation algorithm of the Gamma Shape Mixture lables.}
     \item{\code{data}:}{Object of class \code{"numeric"}; original data.}
   }
 }

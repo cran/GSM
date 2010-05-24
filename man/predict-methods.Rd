@@ -5,7 +5,7 @@
 \alias{predict,gsm-method}
 \title{Tail Probability Estimation for a Gamma Shape Mixture Model}
 \usage{
-      \S4method{predict}{gsm}(object, thresh, start = 1, \dots)
+\S4method{predict}{gsm}(object, thresh, start = 1, \dots)
 }
 \description{
    \code{predict} method for class "gsm". This function allows to estimate the tail probability of a Gamma Shape Mixture Model using the output of the \code{\link{estim.gsm}} or \code{\link{estim.gsm_theta}} procedures.

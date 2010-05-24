@@ -5,7 +5,7 @@
 \alias{plot,gsm,missing-method}
 \title{Plot of a Gamma Shape Mixture Model}
 \usage{
-   \S4method{plot}{gsm,missing}(x, ndens = 5, xlab = "x", ylab = "density", nbin = 10, histogram = FALSE, bands = FALSE, confid = .95, start = 1, \dots)
+\S4method{plot}{gsm,missing}(x, ndens = 5, xlab = "x", ylab = "density", nbin = 10, histogram = FALSE, bands = FALSE, confid = .95, start = 1, \dots)
 }
 \description{
    \code{plot} method for class "gsm". This function plots the output of a Gamma Shape Mixture estimation procedure.
@@ -36,6 +36,11 @@
    \code{\link{estim.gsm_theta}},
    \code{\link{summary-methods}},
    \code{\link{predict-methods}}.
+}
+\value{
+   List with the following components:
+  \item{xval}{horizontal coordinates.}
+  \item{yval}{vertical coordinates (pointwise density posterior means).}
 }
 \keyword{methods}
 \examples{

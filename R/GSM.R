@@ -1,20 +1,13 @@
-estim.gsm <- function(y, J, G = 100, M = 600, a, b, alpha) {
-  rdirich <- function (n, alpha) {
-      l <- length(alpha)
-      x <- matrix(rgamma(l * n, alpha), ncol = l, byrow = TRUE)
-      sm <- x %*% rep(1, l)
-      x/as.vector(sm)
-  }
-
+estim.gsm <- function(y, J, G = 100, M = 600, a, b, alpha, init = list(rep(1 / J, J), NA, rep(1, N))) {
   N <- length(y)
   y.grid <- seq(min(y)*.66, max(y)*1.5, length = G)
 
   lbl <- matrix(NA, nrow = N, ncol = M)
   wgt <- matrix(NA, nrow = M, ncol = J)
 
-  x <- rep(1, N)
-  w <- rep(1 / J, J)
-  theta <- rep(NA, M)
+  w <- init[[1]]
+  theta <- rep(init[[2]], M)
+  x <- init[[3]]
   logfdens <- matrix(NA, J, G)
   fdens <- matrix(NA, M, G)
 
@@ -28,7 +21,7 @@ estim.gsm <- function(y, J, G = 100, M = 600, a, b, alpha) {
     }
 
     x.counts <- table(factor(x, levels = 1:J))
-    w <- rdirich(1, x.counts + alpha)
+    w <- rdirichlet(1, x.counts + alpha)
     theta[m] <- rgamma(1, sum(x) + a, rate = sum(y) + b)
     for (j in 1:J) {
       logfdens[j,] <- log(w[j]) + (j - 1)*log(y.grid) - theta[m]*y.grid - lgamma(j) + j*log(theta[m])
@@ -37,27 +30,20 @@ estim.gsm <- function(y, J, G = 100, M = 600, a, b, alpha) {
     wgt[m,] <- w
     if (m / 100 == round(m / 100)) print(paste("simulation", m, "/", M))
   }
-  out <- new("gsm", fdens = fdens, theta = theta, weight = wgt, data = y)
+  out <- new("gsm", fdens = fdens, theta = theta, weight = wgt, label = lbl, data = y)
   return(out)
 }
 
-estim.gsm_theta <- function(y, J, G = 100, M = 600, a, b, alpha) {
-  rdirich <- function (n, alpha) {
-      l <- length(alpha)
-      x <- matrix(rgamma(l * n, alpha), ncol = l, byrow = TRUE)
-      sm <- x %*% rep(1, l)
-      x/as.vector(sm)
-  }
-
+estim.gsm_theta <- function(y, J, G = 100, M = 600, a, b, alpha, init = list(rep(1 / J, J), J / max(y), rep(1, N))) {
   N <- length(y)
   y.grid <- seq(min(y)*.66, max(y)*1.5, length = G)
 
   lbl <- matrix(NA, nrow = N, ncol = M)
   wgt <- matrix(NA, nrow = M, ncol = J)
 
-  x <- rep(1, N)
-  w <- rep(1 / J, J)
-  theta <- rep(J / max(y), M + 1)
+  w <- init[[1]]
+  theta <- rep(init[[2]], M + 1)
+  x <- init[[3]]
   logfdens <- matrix(NA, J, G)
   fdens <- matrix(NA, M, G)
 
@@ -70,7 +56,7 @@ estim.gsm_theta <- function(y, J, G = 100, M = 600, a, b, alpha) {
     }
 
     x.counts <- table(factor(x, levels=1:J))
-    w <- rdirich(1, x.counts + alpha)
+    w <- rdirichlet(1, x.counts + alpha)
     theta[m+1] <- rgamma(1, sum(x) + a, rate = sum(y) + b)
     for (j in 1:J) {
       logfdens[j,] <- log(w[j]) + (j - 1)*log(y.grid) - theta[m + 1]*y.grid - lgamma(j) + j*log(theta[m + 1])
@@ -79,7 +65,7 @@ estim.gsm_theta <- function(y, J, G = 100, M = 600, a, b, alpha) {
     wgt[m,] <- w
     if (m / 100 == round(m / 100)) print(paste("simulation", m, "/", M))
   }
-  out <- new("gsm", fdens = fdens, theta = theta, weight = wgt, data = y)
+  out <- new("gsm", fdens = fdens, theta = theta, weight = wgt, label = lbl, data = y)
   return(out)
 }
 
