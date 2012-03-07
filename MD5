@@ -1,0 +1,13 @@
+5141df0a52b595579886d2d54ae3ca6c *DESCRIPTION
+5ffc93e3a45390a69a7a168785a80f02 *NAMESPACE
+2c80656c52081d7283e923328f44dfba *R/AllClasses.R
+65a412bf0015d218230d8ed72b4aa811 *R/GSM.R
+4a4469a6d6788c4a8d9735f2b293f8d3 *man/GSM-package.Rd
+281ffc136cab4d01cce464bb6fef79bb *man/GSMDist.Rd
+a050fc9295f9a13fc3ee9779229b7c74 *man/allcurves.q.Rd
+024a271e177bf8b9879aa95150ff250e *man/estim.gsm.Rd
+2ba59da9b06abb8ae09d8170796ae5c8 *man/estim.gsm_theta.Rd
+a06ae30d50dfb6ff11431f534abfc1d3 *man/gsm-class.Rd
+5ae1d91555059244f06bff961eb66000 *man/plot-methods.Rd
+fcedc75d08d37da47e4e33728b29dfaf *man/predict-methods.Rd
+bbf76154fa4010f40987e9c5196a2152 *man/summary-methods.Rd
