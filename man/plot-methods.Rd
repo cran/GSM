@@ -5,7 +5,8 @@
 \alias{plot,gsm,missing-method}
 \title{Plot of a Gamma Shape Mixture Model}
 \usage{
-\S4method{plot}{gsm,missing}(x, ndens = 5, xlab = "x", ylab = "density", nbin = 10, histogram = FALSE, bands = FALSE, confid = .95, start = 1, \dots)
+\S4method{plot}{gsm,missing}(x, ndens = 5, xlab = "x", ylab = "density", nbin = 10,
+		histogram = FALSE, bands = FALSE, confid = .95, start = 1, \dots)
 }
 \description{
    \code{plot} method for class "gsm". This function plots the output of a Gamma Shape Mixture estimation procedure.
@@ -45,16 +46,16 @@
 \keyword{methods}
 \examples{
 set.seed(2040)
-y <- rgsm(500,c(.1,.3,.4,.2),1)
-burnin <- 100
-mcmcsim <- 500
+y <- rgsm(500, c(.1, .3, .4, .2), 1)
+burnin <- 5
+mcmcsim <- 10
 J <- 250
-gsm.out <- estim.gsm(y,J,300,burnin+mcmcsim,6500,340,1/J)
-par(mfrow=c(3,2))
+gsm.out <- estim.gsm(y, J, 300, burnin + mcmcsim, 6500, 340, 1/J)
+par(mfrow = c(3, 2))
 plot(gsm.out)
-plot(gsm.out,ndens=0,nbin=20,start=(burnin+1))
-plot(gsm.out,ndens=0,nbin=20,histogram=TRUE,start=(burnin+1))
-plot(gsm.out,ndens=0,nbin=20,histogram=TRUE,bands=TRUE,start=(burnin+1))
-plot(gsm.out,ndens=5,nbin=20,histogram=TRUE,bands=TRUE,start=(burnin+1))
-plot(gsm.out,ndens=0,nbin=20,bands=TRUE,start=(burnin+1))
+plot(gsm.out, ndens = 0, nbin = 20, start = (burnin + 1))
+plot(gsm.out, ndens = 0, nbin = 20, histogram = TRUE, start = (burnin + 1))
+plot(gsm.out, ndens = 0, nbin = 20, histogram = TRUE, bands = TRUE, start = (burnin + 1))
+plot(gsm.out, ndens = 5, nbin = 20, histogram = TRUE, bands = TRUE, start = (burnin + 1))
+plot(gsm.out, ndens = 0, nbin = 20, bands = TRUE, start = (burnin + 1))
 }

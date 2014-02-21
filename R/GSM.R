@@ -12,12 +12,12 @@ estim.gsm <- function(y, J, G = 100, M = 600, a, b, alpha, init = list(rep(1 / J
 	fdens <- matrix(NA, M, G)
 	
 	for (m in 1:M) {
-		for (nn in 1:N) {
-			temp <- log(seq(a + sum(x) - x[nn], a + sum(x) - x[nn] + J - 1))
-			pi <- (1:J - 1)*log(y[nn]) - lgamma(1:J) + cumsum(temp) - (1:J)*log(b + sum(y))
+		for (i in 1:N) {
+			temp <- log(seq(a + sum(x) - x[i], a + sum(x) - x[i] + J - 1))
+			pi <- (1:J - 1)*log(y[i]) - lgamma(1:J) + cumsum(temp) - (1:J)*log(b + sum(y))
 			pi <- (w*exp(pi)) / sum(w*exp(pi))
-			x[nn] <- sample(1:J, 1, prob = pi)
-			lbl[nn,m] <- x[nn]
+			x[i] <- sample(1:J, 1, prob = pi)
+			lbl[i, m] <- x[i]
 		}
 		
 		x.counts <- table(factor(x, levels = 1:J))
@@ -26,10 +26,11 @@ estim.gsm <- function(y, J, G = 100, M = 600, a, b, alpha, init = list(rep(1 / J
 		for (j in 1:J) {
 			logfdens[j,] <- log(w[j]) + (j - 1)*log(y.grid) - theta[m]*y.grid - lgamma(j) + j*log(theta[m])
 		}
-		fdens[m,] <- apply(exp(logfdens), 2, sum)
-		wgt[m,] <- w
+		fdens[m, ] <- apply(exp(logfdens), 2, sum)
+		wgt[m, ] <- w
 		if (m / 100 == round(m / 100)) print(paste("simulation", m, "/", M))
 	}
+
 	out <- new("gsm", fdens = fdens, theta = theta, weight = wgt, label = lbl, data = y)
 	return(out)
 }
@@ -48,31 +49,32 @@ estim.gsm_theta <- function(y, J, G = 100, M = 600, a, b, alpha, init = list(rep
 	fdens <- matrix(NA, M, G)
 	
 	for (m in 1:M) {
-		for (nn in 1:N) {
-			pi <- (1:J - 1)*log(y[nn]) - theta[m]*y[nn] - lgamma(1:J) + (1:J)*log(theta[m])
+		for (i in 1:N) {
+			pi <- (1:J - 1)*log(y[i]) - theta[m]*y[i] - lgamma(1:J) + (1:J)*log(theta[m])
 			pi <- (w*exp(pi)) / sum(w*exp(pi))
-			x[nn] <- sample(1:J, 1, prob = pi)
-			lbl[nn,m] <- x[nn]
+			x[i] <- sample(1:J, 1, prob = pi)
+			lbl[i, m] <- x[i]
 		}
 		
 		x.counts <- table(factor(x, levels=1:J))
 		w <- rdirichlet(1, x.counts + alpha)
-		theta[m+1] <- rgamma(1, sum(x) + a, rate = sum(y) + b)
+		theta[m + 1] <- rgamma(1, sum(x) + a, rate = sum(y) + b)
 		for (j in 1:J) {
 			logfdens[j,] <- log(w[j]) + (j - 1)*log(y.grid) - theta[m + 1]*y.grid - lgamma(j) + j*log(theta[m + 1])
 		}
-		fdens[m,] <- apply(exp(logfdens), 2, sum)
-		wgt[m,] <- w
+		fdens[m, ] <- apply(exp(logfdens), 2, sum)
+		wgt[m, ] <- w
 		if (m / 100 == round(m / 100)) print(paste("simulation", m, "/", M))
 	}
+
 	out <- new("gsm", fdens = fdens, theta = theta, weight = wgt, label = lbl, data = y)
 	return(out)
 }
 
 allcurves.q <- function(post, perc) {
 	n <- dim(post)[2]
-	temp <- rep(NA,n)
-	for (i in 1:n) temp[i] <- quantile(post[ , i] ,perc)
+	temp <- numeric(n)
+	for (i in 1:n) temp[i] <- quantile(post[, i], perc) # to be replaced with 'apply(post, 2, quantile, probs = perc)'
 	return(temp)
 }
 

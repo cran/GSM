@@ -5,7 +5,8 @@
    This function provides the inferential algorithm to estimate a mixture of gamma distributions in which the mixing occurs over the shape parameter. It implements the collapsing approach for the GSM model, as discussed in Venturini et al. (2008).
 }
 \usage{
-   estim.gsm(y, J, G = 100, M = 600, a, b, alpha, init = list(rep(1 / J, J), NA, rep(1, N)))
+   estim.gsm(y, J, G = 100, M = 600, a, b, alpha, init = list(rep(1 / J, J), NA,
+   		rep(1, N)))
 }
 \arguments{
    \item{y}{vector of data.}
@@ -41,12 +42,13 @@
 \keyword{distribution}
 \keyword{mixture}
 \examples{
+\dontrun{
 set.seed(2040)
-y <- rgsm(500,c(.1,.3,.4,.2),1)
+y <- rgsm(500, c(.1, .3, .4, .2), 1)
 burnin <- 100
 mcmcsim <- 500
 J <- 250
-gsm.out <- estim.gsm(y,J,300,burnin+mcmcsim,6500,340,1/J)
-summary(gsm.out,plot=TRUE,start=(burnin+1))
-plot(gsm.out,ndens=0,nbin=20,histogram=TRUE,start=(burnin+1))
+gsm.out <- estim.gsm(y, J, 300, burnin + mcmcsim, 6500, 340, 1/J)
+summary(gsm.out, plot = TRUE, start = (burnin + 1))
+plot(gsm.out, ndens = 0, nbin = 20, histogram = TRUE, start = (burnin + 1))}
 }

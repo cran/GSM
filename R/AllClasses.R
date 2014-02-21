@@ -1,4 +1,4 @@
-.onLoad <- function(lib, pkg) {
+.onAttach <- function(lib, pkg) {
 	packageStartupMessage(sprintf("Package %s (%s) loaded.
 To cite, see citation(\"%s\")\n", pkg, packageDescription(pkg)$Version, pkg))
 }
