@@ -7,3 +7,7 @@ import(
   methods,
   utils
 )
+
+importFrom("graphics", "barplot", "hist", "lines", "polygon", "rug")
+importFrom("grDevices", "gray", "rgb")
+importFrom("stats", "NLSstClosestX", "dgamma", "pgamma", "quantile", "rgamma", "rmultinom", "sortedXyData", "uniroot")
